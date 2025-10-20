@@ -45,6 +45,10 @@ public class Carta {
     Carta carta = new Carta("♥", "A", "As", 1);
     System.out.println(carta);
 
+    InterfazJuego ventana = new InterfazJuego();
+    ventana.setVisible(true);
+    ventana.setLocationRelativeTo(null);
+
   }
 
 
