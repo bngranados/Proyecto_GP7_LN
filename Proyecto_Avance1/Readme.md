@@ -17,6 +17,6 @@
 
 ### 1. Instalación
 Librerias unicamente usamos import java.util.ArrayList;
-import java.util.List; y 
+import java.util.List; y import java.awt.*;
 ### 2. Compilación
-!! AÑADIR
+no se necesita un parametro especifico
