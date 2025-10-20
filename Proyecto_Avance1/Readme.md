@@ -16,7 +16,7 @@
 - El proyecto está desarrollado en **Java SE 21 & JDK 21**.
 
 ### 1. Instalación
-!! AÑADIR
-
+Librerias unicamente usamos import java.util.ArrayList;
+import java.util.List; y 
 ### 2. Compilación
 !! AÑADIR
