@@ -4,7 +4,7 @@
 | Nombre | Carné | Usuario Git | Correo Git |
 | :--- | :--- | :--- | :--- |
 | Brenda Granados Ramirez | FI24039956 | bngranados | bgranados70835@ufide.ac.cr |
-| [Nombre Completo 2] | [Carné 2] | [Usuario Git 2] | [Correo Git 2] |
+| [Mayquelin Narbaez Guido] | [FI22023961] | [Mayquelin] | mayquelin1984@gmail.com] |
 | [Nombre Completo 2] | [Carné 2] | [Usuario Git 2] | [Correo Git 2] |
 | [Nombre Completo 2] | [Carné 2] | [Usuario Git 2] | [Correo Git 2] |
 | ... | ... | ... | ... |
