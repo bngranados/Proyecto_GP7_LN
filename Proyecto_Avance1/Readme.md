@@ -10,7 +10,7 @@
 | ... | ... | ... | ... |
 
 ## Editores / IDEs Utilizados
-- El IDE utilizado sería NetBeans
+- El IDE utilizado sería NetBeans y Visual Studio Code
   
 ## Instructivo de Uso
 - El proyecto está desarrollado en **Java SE 21 & JDK 21**.
