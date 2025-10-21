@@ -6,7 +6,7 @@
 | Brenda Granados Ramirez | FI24039956 | bngranados | bgranados70835@ufide.ac.cr |
 | Mayquelin Narbaez Guido | FI22023961 | Mayquelin | mayquelin1984@gmail.com |
 | Mariangel Barrios Muñoz | FI24036629 | MariangelB | mariamgelbarrios5@gmail.com |
-|Brandon Lanzoni Rodriguez| FI25049122 |Brandon120105|brandongabriel120105@gmail.com |
+| Brandon Lanzoni Rodriguez| FI25049122 |Brandon120105|brandongabriel120105@gmail.com |
 | ... | ... | ... | ... |
 
 ## Editores / IDEs Utilizados
@@ -32,7 +32,10 @@ Al ser una aplicación de escritorio (Desktop) con interfaz gráfica, se utiliza
   [https://netbeans.apache.org/kb/docs/](https://netbeans.apache.org/kb/docs/)  
 - VS Code – Extensión de Java y configuración de JDK:  
   [https://code.visualstudio.com/docs/java/java-tutorial](https://code.visualstudio.com/docs/java/java-tutorial)  
-
+- Implementacion de GridLayout en Java Swing:
+  - Utilizado para darle una mejor interfaz a la hora de correrlo.
+  [https://docs.oracle.com/javase/tutorial/uiswing/layout/grid.html](https://inforux.wordpress.com/2009/03/21/java-practicando-con-gridlayout/)[https://www.youtube.com/watch?v=xvvMSJ3nfT8]
+  - Ayuda con Gemini: [https://gemini.google.com/app/d99af3ba63ea9788?hl=es]
 
 ### 1. Instalación
 - Se utiliza **Java SE 21** (JDK 21), que es la versión Long-Term Support recomendada.  
