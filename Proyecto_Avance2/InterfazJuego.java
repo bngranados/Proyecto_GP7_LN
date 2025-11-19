@@ -1,8 +1,9 @@
-package Proyecto_Avance1;
+package Proyecto_Avance2;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
+import java.util.Stack;
 
 public class InterfazJuego extends javax.swing.JFrame {
 
@@ -17,8 +18,10 @@ public class InterfazJuego extends javax.swing.JFrame {
 
         juego = new Juego();
         mostrarCartasCaja(juego.getCaja());
+        mostrarCartasMazo(juego.getMazo());
     }
 
+    // Muestra visual de la Caja 
     private void mostrarCartasCaja(List<Carta> listaCartas) {
         JPanelCaja.setLayout(new BorderLayout());
         
@@ -60,9 +63,62 @@ public class InterfazJuego extends javax.swing.JFrame {
         JPanelCaja.revalidate();
         JPanelCaja.repaint();
     }
+
+    private void mostrarCartasMazo(Stack<Carta> mazoStack) {
+        JPanelMazo.setLayout(new BorderLayout());
+
+        JPanel cartasPanel = new JPanel();
+        cartasPanel.setLayout(new GridLayout(0, 1, 3, 3));
+
+        if (mazoStack.isEmpty()) {
+            JLabel vacio = new JLabel("Mazo (vacío)");
+            vacio.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+            vacio.setHorizontalAlignment(SwingConstants.LEFT);
+            Component[] components = JPanelMazo.getComponents();
+            for (Component component : components) {
+                if (component != jLabel3) {
+                    JPanelMazo.remove(component);
+                }
+            }
+            JPanelMazo.add(jLabel3, BorderLayout.NORTH);
+            JPanelMazo.add(vacio, BorderLayout.CENTER);
+            JPanelMazo.revalidate();
+            JPanelMazo.repaint();
+            return;
+        }
+
+        for (int i = mazoStack.size() - 1; i >= 0; i--) {
+            Carta carta = mazoStack.get(i);
+            JButton cartaBoton = new JButton(carta.getValor() + carta.getPalo() + "  (" + carta.getColor() + ")");
+            cartaBoton.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+            cartaBoton.setOpaque(true);
+            cartaBoton.setBackground(Color.WHITE);
+            cartaBoton.setPreferredSize(new Dimension(200, 28));
+            if (carta.getColor().equals("rojo")) {
+                cartaBoton.setForeground(Color.RED);
+            } else {
+                cartaBoton.setForeground(Color.BLACK);
+            }
+            cartasPanel.add(cartaBoton);
+        }
+
+        Component[] components = JPanelMazo.getComponents();
+        for (Component component : components) {
+            if (component != jLabel3) {
+                JPanelMazo.remove(component);
+            }
+        }
+        
+        JPanelMazo.add(jLabel3, BorderLayout.NORTH);
+        JScrollPane scroll = new JScrollPane(cartasPanel);
+        JPanelMazo.add(scroll, BorderLayout.CENTER);
+        JPanelMazo.revalidate();
+        JPanelMazo.repaint();
+    }
     
     private void actualizarVistasJuego() {
         mostrarCartasCaja(juego.getCaja()); 
+        mostrarCartasMazo(juego.getMazo());
     }
 
     private void initComponents() {
@@ -226,7 +282,7 @@ public class InterfazJuego extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(JPanelCaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(JPanelOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -247,6 +303,7 @@ public class InterfazJuego extends javax.swing.JFrame {
         actualizarVistasJuego();
     }
 
+    // Botón Barajar -> realiza el baraje y actualiza visual Caja + Mazo
     private void btnBarajarActionPerformed(java.awt.event.ActionEvent evt) {
         if (juego.getCaja().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Las cartas ya estan en el Mazo y mezcladas.");
@@ -255,7 +312,7 @@ public class InterfazJuego extends javax.swing.JFrame {
         
         juego.barajarYPrepararMazo();
         
-        mostrarCartasCaja(juego.getCaja()); 
+        actualizarVistasJuego();
         
         JOptionPane.showMessageDialog(this, "Baraja mezclada. Ahora hay " + juego.getMazo().size() + " cartas en el Mazo.");
     }
@@ -268,6 +325,7 @@ public class InterfazJuego extends javax.swing.JFrame {
         });
     }
 
+    // Variables (mantengo tus nombres)
     private javax.swing.JPanel JPanelCaja;
     private javax.swing.JPanel JPanelMano;
     private javax.swing.JPanel JPanelMazo;
