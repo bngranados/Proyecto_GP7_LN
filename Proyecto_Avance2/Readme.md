@@ -60,18 +60,6 @@ Al ser una aplicación de escritorio (Desktop) con interfaz gráfica, se utiliza
      ```sh
      javac -d bin *.java
      ```
-<<<<<<< HEAD
-
-# 3. Ejecución
-- Desde el IDE: ejecutar la clase principal `Carta`.
-- Desde la terminal:
-  ```sh
-  java -cp bin Proyecto_Avance2.Carta
-  
----
-
-<img width="1136" height="720" alt="image" src="https://github.com/user-attachments/assets/6a2665a5-b2db-4f88-a12f-346aaa64e019" />
-=======
 
 # 3. Ejecución
 - Desde el IDE: ejecutar la clase principal `Carta`.
@@ -83,7 +71,7 @@ Al ser una aplicación de escritorio (Desktop) con interfaz gráfica, se utiliza
 
 <img width="1136" height="720" alt="image" src="https://github.com/user-attachments/assets/6a2665a5-b2db-4f88-a12f-346aaa64e019" />
 
->>>>>>> 3aad7b2a07bae38fb97cef3bc7cafa512908e2cb
+
 
 
 
