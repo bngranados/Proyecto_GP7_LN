@@ -52,7 +52,7 @@ Al ser una aplicación de escritorio (Desktop) con interfaz gráfica, se utiliza
   - **VS Code:** instalar la extensión de Java y configurar la ruta al JDK 21.
   - **NetBeans:** configurar el JDK 21 en las opciones de plataformas de Java.
 
-# 2. Compilación
+### 2. Compilación
 - Desde el IDE: usar **Run** o **Build** para generar los `.class`.
 - Desde la terminal:
   1. Ubicarse en la carpeta `Proyecto_Avance2`.
@@ -61,7 +61,7 @@ Al ser una aplicación de escritorio (Desktop) con interfaz gráfica, se utiliza
      javac -d bin *.java
      ```
 
-# 3. Ejecución
+### 3. Ejecución
 - Desde el IDE: ejecutar la clase principal `Carta`.
 - Desde la terminal:
   ```sh
@@ -70,6 +70,4 @@ Al ser una aplicación de escritorio (Desktop) con interfaz gráfica, se utiliza
 ---
 
 <img width="1136" height="720" alt="image" src="https://github.com/user-attachments/assets/6a2665a5-b2db-4f88-a12f-346aaa64e019" />
-
-
 
