@@ -1,4 +1,4 @@
-# Proyecto Final: The Sandwich Guy  - Avance I
+# Proyecto Final: The Sandwich Guy  - Avance II
 
 ## Integrantes del Grupo
 | Nombre | Carné | Usuario Git | Correo Git |
@@ -52,20 +52,24 @@ Al ser una aplicación de escritorio (Desktop) con interfaz gráfica, se utiliza
   - **VS Code:** instalar la extensión de Java y configurar la ruta al JDK 21.
   - **NetBeans:** configurar el JDK 21 en las opciones de plataformas de Java.
 
-## 2. Compilación  
-- El proyecto puede compilarse desde el IDE utilizando las opciones **Run** o **Build**, que generan automáticamente los archivos `.class` según la estructura del paquete `Proyecto_Avance2`.  
-- Si se compila desde la terminal, primero se debe ubicar dentro de la carpeta donde se encuentran los archivos fuente (`Proyecto_Avance2`).  
-- Luego, se compilan todos los archivos `.java` hacia la carpeta `bin` con el siguiente comando:
+# 2. Compilación
+- Desde el IDE: usar **Run** o **Build** para generar los `.class`.
+- Desde la terminal:
+  1. Ubicarse en la carpeta `Proyecto_Avance2`.
+  2. Compilar con:
+     ```sh
+     javac -d bin *.java
+     ```
 
-```sh
-javac -d bin *.java
+# 3. Ejecución
+- Desde el IDE: ejecutar la clase principal `Carta`.
+- Desde la terminal:
+  ```sh
+  java -cp bin Proyecto_Avance2.Carta
+  
+---
 
-```md
-## 3. Ejecución  
-- Desde el IDE, la ejecución se realiza seleccionando **Run** sobre la clase principal (`Carta`), que contiene el método `main`.  
-- Para ejecutar desde la terminal, se utiliza la carpeta `bin` como classpath e indicando el nombre completo de la clase principal dentro del paquete:
+<img width="1136" height="720" alt="image" src="https://github.com/user-attachments/assets/6a2665a5-b2db-4f88-a12f-346aaa64e019" />
 
-```sh
-java -cp bin Proyecto_Avance2.Carta
 
-- Una vez ejecutado, el programa mostrará en consola información de una carta de prueba y luego abrirá la interfaz gráfica, donde se visualizan los paneles y botones correspondientes al avance del proyecto.
+
