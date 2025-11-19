@@ -1,5 +1,8 @@
 package Proyecto_Avance2;
 
+// Por instrucciones del profesor, la clase aun no es funcional.
+
+
 import java.util.LinkedList;
 import java.util.List;
 

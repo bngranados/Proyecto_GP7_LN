@@ -325,7 +325,6 @@ public class InterfazJuego extends javax.swing.JFrame {
         });
     }
 
-    // Variables (mantengo tus nombres)
     private javax.swing.JPanel JPanelCaja;
     private javax.swing.JPanel JPanelMano;
     private javax.swing.JPanel JPanelMazo;

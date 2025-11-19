@@ -67,6 +67,9 @@ Al ser una aplicación de escritorio (Desktop) con interfaz gráfica, se utiliza
   ```sh
   java -cp bin Proyecto_Avance2.Carta
   
+### Dato:
+- Se creó la carpeta bin dentro de la carpeta principal del Avance II para que, al compilar desde la terminal (cuando se generan los archivos .class), estos se almacenen en una carpeta diferente, lo que permite mantener un orden más claro.
+
 ---
 
 <img width="1136" height="720" alt="image" src="https://github.com/user-attachments/assets/6a2665a5-b2db-4f88-a12f-346aaa64e019" />
