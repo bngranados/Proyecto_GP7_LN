@@ -4,7 +4,7 @@
 | Nombre | Carné | Usuario Git | Correo Git |
 | :--- | :--- | :--- | :--- |
 | Brenda Granados Ramirez | FI24039956 | bngranados | bgranados70835@ufide.ac.cr |
-| Mayquelin Narbaez Guido | FI22023961 | Mayquelin | mayquelin1984@gmail.com |
+| Mayquelin Narbaéz Guido | FI22023961 | Mayquelin | mayquelin1984@gmail.com |
 | Mariangel Barrios Muñoz | FI24036629 | MariangelB | mariamgelbarrios5@gmail.com |
 | Brandon Lanzoni Rodriguez| FI25049122 | Brandon120105|brandongabriel120105@gmail.com |
 | ... | ... | ... | ... |
