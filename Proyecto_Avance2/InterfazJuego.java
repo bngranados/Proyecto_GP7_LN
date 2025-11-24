@@ -9,16 +9,39 @@ public class InterfazJuego extends javax.swing.JFrame {
 
     private Juego juego;
 
+    // Define colores y fuentes para un estilo consistente
+    private final Color VERDE_FONDO = new Color(34, 139, 34); // Un verde oscuro tipo mesa de juego
+    private final Color BLANCO_TEXTO = Color.BLACK;
+    private final Font FUENTE_TITULO = new Font("Segoe U", Font.BOLD, 18);
+    private final Font FUENTE_BOTON = new Font("Segoe U", Font.BOLD, 12);
+    private final Font FUENTE_CARTA = new Font("Segoe U", Font.BOLD, 14);
+
     public InterfazJuego() {
         initComponents();
         setTitle("Juego de Cartas - Sandwich");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1200, 600);
+        setSize(1050, 600);
         setLayout(new BorderLayout());
+        
+        aplicarEstilos(); // Método centralizado para aplicar el diseño
 
         juego = new Juego();
         mostrarCartasCaja(juego.getCaja());
         mostrarCartasMazo(juego.getMazo());
+    }
+
+    private void aplicarEstilos() {
+        getContentPane().setBackground(VERDE_FONDO);
+        JPanelCaja.setBackground(VERDE_FONDO);
+        JPanelMano.setBackground(VERDE_FONDO);
+        JPanelOpciones.setBackground(VERDE_FONDO);
+        JPanelMazo.setBackground(VERDE_FONDO);
+        JPanelPozo.setBackground(VERDE_FONDO);
+
+        estilizarEtiqueta(jLabel1, "Caja de cartas:");
+        estilizarEtiqueta(jLabel2, "Mano:");
+        estilizarEtiqueta(jLabel3, "Mazo:");
+        estilizarEtiqueta(jLabel4, "Pozo:");
     }
 
     // Muestra visual de la Caja 
@@ -35,12 +58,13 @@ public class InterfazJuego extends javax.swing.JFrame {
         
         for (Carta carta : listaCartas) {
             JButton cartaBoton = new JButton(carta.getValor() + carta.getPalo());
-            
+            cartaBoton.setFont(FUENTE_CARTA);
             cartaBoton.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
             cartaBoton.setOpaque(true);
             cartaBoton.setBackground(Color.WHITE);
             cartaBoton.setPreferredSize(new Dimension(80, 50));
-            
+            cartaBoton.setFocusPainted(false); // Mejora visual del botón
+
             if (carta.getColor().equals("rojo")) {
                 cartaBoton.setForeground(Color.RED);
             } else {
@@ -72,7 +96,8 @@ public class InterfazJuego extends javax.swing.JFrame {
 
         if (mazoStack.isEmpty()) {
             JLabel vacio = new JLabel("Mazo (vacío)");
-            vacio.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+            vacio.setFont(new Font("Segoe U", Font.ITALIC, 14));
+            vacio.setForeground(BLANCO_TEXTO);
             vacio.setHorizontalAlignment(SwingConstants.LEFT);
             Component[] components = JPanelMazo.getComponents();
             for (Component component : components) {
@@ -90,11 +115,13 @@ public class InterfazJuego extends javax.swing.JFrame {
         for (int i = mazoStack.size() - 1; i >= 0; i--) {
             Carta carta = mazoStack.get(i);
             JButton cartaBoton = new JButton(carta.getValor() + carta.getPalo() + "  (" + carta.getColor() + ")");
+            cartaBoton.setFont(new Font("Segoe U", Font.PLAIN, 12));
             cartaBoton.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
             cartaBoton.setOpaque(true);
             cartaBoton.setBackground(Color.WHITE);
             cartaBoton.setPreferredSize(new Dimension(200, 28));
             if (carta.getColor().equals("rojo")) {
+                cartaBoton.setFont(new Font("Segoe U", Font.BOLD, 12));
                 cartaBoton.setForeground(Color.RED);
             } else {
                 cartaBoton.setForeground(Color.BLACK);
@@ -116,6 +143,12 @@ public class InterfazJuego extends javax.swing.JFrame {
         JPanelMazo.repaint();
     }
     
+    private void estilizarEtiqueta(JLabel label, String texto) {
+        label.setText(texto);
+        label.setFont(FUENTE_TITULO);
+        label.setForeground(BLANCO_TEXTO);
+    }
+
     private void actualizarVistasJuego() {
         mostrarCartasCaja(juego.getCaja()); 
         mostrarCartasMazo(juego.getMazo());
@@ -140,13 +173,11 @@ public class InterfazJuego extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14));
-        jLabel1.setText("Caja de cartas:");
+        estilizarEtiqueta(jLabel1, "Caja de cartas:");
         
         
         JPanelMano.setLayout(new FlowLayout());
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14));
-        jLabel2.setText("Mano:");
+        estilizarEtiqueta(jLabel2, "Mano:");
 
         javax.swing.GroupLayout JPanelManoLayout = new javax.swing.GroupLayout(JPanelMano);
         JPanelMano.setLayout(JPanelManoLayout);
@@ -166,6 +197,7 @@ public class InterfazJuego extends javax.swing.JFrame {
         );
 
         btnNuevaP.setText("Nueva partida");
+        btnNuevaP.setFont(FUENTE_BOTON);
         btnNuevaP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevaPActionPerformed(evt);
@@ -173,6 +205,7 @@ public class InterfazJuego extends javax.swing.JFrame {
         });
 
         btnOrdenar.setText("Barajar");
+        btnOrdenar.setFont(FUENTE_BOTON);
         btnOrdenar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBarajarActionPerformed(evt);
@@ -180,10 +213,13 @@ public class InterfazJuego extends javax.swing.JFrame {
         });
 
         bntValidar.setText("Validar");
+        bntValidar.setFont(FUENTE_BOTON);
 
         bntGuardar.setText("Guardar");
+        bntGuardar.setFont(FUENTE_BOTON);
 
         bntCargarP.setText("Cargar partida");
+        bntCargarP.setFont(FUENTE_BOTON);
 
         javax.swing.GroupLayout JPanelOpcionesLayout = new javax.swing.GroupLayout(JPanelOpciones);
         JPanelOpciones.setLayout(JPanelOpcionesLayout);
@@ -217,8 +253,7 @@ public class InterfazJuego extends javax.swing.JFrame {
 
         JPanelMazo.setPreferredSize(new java.awt.Dimension(300, 300));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14));
-        jLabel3.setText("Mazo:");
+        estilizarEtiqueta(jLabel3, "Mazo:");
 
         javax.swing.GroupLayout JPanelMazoLayout = new javax.swing.GroupLayout(JPanelMazo);
         JPanelMazo.setLayout(JPanelMazoLayout);
@@ -239,8 +274,7 @@ public class InterfazJuego extends javax.swing.JFrame {
 
         JPanelPozo.setPreferredSize(new java.awt.Dimension(300, 300));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14));
-        jLabel4.setText("Pozo:");
+        estilizarEtiqueta(jLabel4, "Pozo:");
 
         javax.swing.GroupLayout JPanelPozoLayout = new javax.swing.GroupLayout(JPanelPozo);
         JPanelPozo.setLayout(JPanelPozoLayout);
