@@ -10,7 +10,7 @@ public class InterfazJuego extends javax.swing.JFrame {
     private Juego juego;
 
     // Define colores y fuentes para un estilo consistente
-    private final Color VERDE_FONDO = new Color(34, 139, 34); // Un verde oscuro tipo mesa de juego
+    private final Color VERDE_FONDO = new Color(11, 116, 59); // Un verde oscuro tipo mesa de juego
     private final Color BLANCO_TEXTO = Color.BLACK;
     private final Font FUENTE_TITULO = new Font("Segoe U", Font.BOLD, 18);
     private final Font FUENTE_BOTON = new Font("Segoe U", Font.BOLD, 12);
@@ -22,7 +22,7 @@ public class InterfazJuego extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1050, 600);
         setLayout(new BorderLayout());
-        
+        setLocationRelativeTo(null);
         aplicarEstilos(); // Método centralizado para aplicar el diseño
 
         juego = new Juego();
@@ -42,20 +42,26 @@ public class InterfazJuego extends javax.swing.JFrame {
         estilizarEtiqueta(jLabel2, "Mano:");
         estilizarEtiqueta(jLabel3, "Mazo:");
         estilizarEtiqueta(jLabel4, "Pozo:");
+
+        // se cambia color de texto para mejorar apariencia haciendo uso de la teoria de color
+        jLabel1.setForeground(Color.decode("#FFCC33"));
+        jLabel2.setForeground(Color.decode("#FFCC33"));
+        jLabel3.setForeground(Color.decode("#FFCC33"));
+        jLabel4.setForeground(Color.decode("#FFCC33"));
     }
 
-    // Muestra visual de la Caja 
+    // Muestra visual de la Caja
     private void mostrarCartasCaja(List<Carta> listaCartas) {
         JPanelCaja.setLayout(new BorderLayout());
-        
+
         JPanel cartasPanel = new JPanel();
-        
+
         if (listaCartas.size() == 52) {
             cartasPanel.setLayout(new GridLayout(4, 13, 5, 5));
         } else {
             cartasPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
         }
-        
+
         for (Carta carta : listaCartas) {
             JButton cartaBoton = new JButton(carta.getValor() + carta.getPalo());
             cartaBoton.setFont(FUENTE_CARTA);
@@ -70,20 +76,20 @@ public class InterfazJuego extends javax.swing.JFrame {
             } else {
                 cartaBoton.setForeground(Color.BLACK);
             }
-            
+
             cartasPanel.add(cartaBoton);
         }
-        
+
         Component[] components = JPanelCaja.getComponents();
         for (Component component : components) {
             if (component != jLabel1) {
                 JPanelCaja.remove(component);
             }
         }
-        
+
         JPanelCaja.add(jLabel1, BorderLayout.NORTH);
         JPanelCaja.add(cartasPanel, BorderLayout.CENTER);
-        
+
         JPanelCaja.revalidate();
         JPanelCaja.repaint();
     }
@@ -99,6 +105,7 @@ public class InterfazJuego extends javax.swing.JFrame {
             vacio.setFont(new Font("Segoe U", Font.ITALIC, 14));
             vacio.setForeground(BLANCO_TEXTO);
             vacio.setHorizontalAlignment(SwingConstants.LEFT);
+            vacio.setForeground(Color.decode("#FFCC33"));
             Component[] components = JPanelMazo.getComponents();
             for (Component component : components) {
                 if (component != jLabel3) {
@@ -135,14 +142,14 @@ public class InterfazJuego extends javax.swing.JFrame {
                 JPanelMazo.remove(component);
             }
         }
-        
+
         JPanelMazo.add(jLabel3, BorderLayout.NORTH);
         JScrollPane scroll = new JScrollPane(cartasPanel);
         JPanelMazo.add(scroll, BorderLayout.CENTER);
         JPanelMazo.revalidate();
         JPanelMazo.repaint();
     }
-    
+
     private void estilizarEtiqueta(JLabel label, String texto) {
         label.setText(texto);
         label.setFont(FUENTE_TITULO);
@@ -150,7 +157,7 @@ public class InterfazJuego extends javax.swing.JFrame {
     }
 
     private void actualizarVistasJuego() {
-        mostrarCartasCaja(juego.getCaja()); 
+        mostrarCartasCaja(juego.getCaja());
         mostrarCartasMazo(juego.getMazo());
     }
 
@@ -174,27 +181,25 @@ public class InterfazJuego extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         estilizarEtiqueta(jLabel1, "Caja de cartas:");
-        
-        
+
         JPanelMano.setLayout(new FlowLayout());
         estilizarEtiqueta(jLabel2, "Mano:");
 
         javax.swing.GroupLayout JPanelManoLayout = new javax.swing.GroupLayout(JPanelMano);
         JPanelMano.setLayout(JPanelManoLayout);
         JPanelManoLayout.setHorizontalGroup(
-            JPanelManoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPanelManoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                JPanelManoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(JPanelManoLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 85,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
         JPanelManoLayout.setVerticalGroup(
-            JPanelManoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPanelManoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(179, Short.MAX_VALUE))
-        );
+                JPanelManoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(JPanelManoLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel2)
+                                .addContainerGap(179, Short.MAX_VALUE)));
 
         btnNuevaP.setText("Nueva partida");
         btnNuevaP.setFont(FUENTE_BOTON);
@@ -224,32 +229,32 @@ public class InterfazJuego extends javax.swing.JFrame {
         javax.swing.GroupLayout JPanelOpcionesLayout = new javax.swing.GroupLayout(JPanelOpciones);
         JPanelOpciones.setLayout(JPanelOpcionesLayout);
         JPanelOpcionesLayout.setHorizontalGroup(
-            JPanelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPanelOpcionesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnNuevaP)
-                .addGap(18, 18, 18)
-                .addComponent(bntCargarP)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
-                .addComponent(btnOrdenar)
-                .addGap(18, 18, 18)
-                .addComponent(bntValidar)
-                .addGap(18, 18, 18)
-                .addComponent(bntGuardar)
-                .addGap(19, 19, 19))
-        );
+                JPanelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(JPanelOpcionesLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btnNuevaP)
+                                .addGap(18, 18, 18)
+                                .addComponent(bntCargarP)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136,
+                                        Short.MAX_VALUE)
+                                .addComponent(btnOrdenar)
+                                .addGap(18, 18, 18)
+                                .addComponent(bntValidar)
+                                .addGap(18, 18, 18)
+                                .addComponent(bntGuardar)
+                                .addGap(19, 19, 19)));
         JPanelOpcionesLayout.setVerticalGroup(
-            JPanelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPanelOpcionesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(JPanelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNuevaP)
-                    .addComponent(btnOrdenar)
-                    .addComponent(bntValidar)
-                    .addComponent(bntGuardar)
-                    .addComponent(bntCargarP))
-                .addContainerGap(7, Short.MAX_VALUE))
-        );
+                JPanelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(JPanelOpcionesLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(JPanelOpcionesLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(btnNuevaP)
+                                        .addComponent(btnOrdenar)
+                                        .addComponent(bntValidar)
+                                        .addComponent(bntGuardar)
+                                        .addComponent(bntCargarP))
+                                .addContainerGap(7, Short.MAX_VALUE)));
 
         JPanelMazo.setPreferredSize(new java.awt.Dimension(300, 300));
 
@@ -258,19 +263,18 @@ public class InterfazJuego extends javax.swing.JFrame {
         javax.swing.GroupLayout JPanelMazoLayout = new javax.swing.GroupLayout(JPanelMazo);
         JPanelMazo.setLayout(JPanelMazoLayout);
         JPanelMazoLayout.setHorizontalGroup(
-            JPanelMazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPanelMazoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(145, Short.MAX_VALUE))
-        );
+                JPanelMazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(JPanelMazoLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 99,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(145, Short.MAX_VALUE)));
         JPanelMazoLayout.setVerticalGroup(
-            JPanelMazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPanelMazoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addContainerGap(282, Short.MAX_VALUE))
-        );
+                JPanelMazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(JPanelMazoLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel3)
+                                .addContainerGap(282, Short.MAX_VALUE)));
 
         JPanelPozo.setPreferredSize(new java.awt.Dimension(300, 300));
 
@@ -279,55 +283,66 @@ public class InterfazJuego extends javax.swing.JFrame {
         javax.swing.GroupLayout JPanelPozoLayout = new javax.swing.GroupLayout(JPanelPozo);
         JPanelPozo.setLayout(JPanelPozoLayout);
         JPanelPozoLayout.setHorizontalGroup(
-            JPanelPozoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPanelPozoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                JPanelPozoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(JPanelPozoLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 88,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
         JPanelPozoLayout.setVerticalGroup(
-            JPanelPozoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPanelPozoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4)
-                .addContainerGap(242, Short.MAX_VALUE))
-        );
+                JPanelPozoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(JPanelPozoLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel4)
+                                .addContainerGap(242, Short.MAX_VALUE)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JPanelCaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JPanelMano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(JPanelOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 9, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(JPanelPozo, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                    .addComponent(JPanelMazo, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(JPanelCaja, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(JPanelMano, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(JPanelOpciones, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 9, Short.MAX_VALUE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(JPanelPozo, javax.swing.GroupLayout.DEFAULT_SIZE, 250,
+                                                Short.MAX_VALUE)
+                                        .addComponent(JPanelMazo, javax.swing.GroupLayout.DEFAULT_SIZE, 250,
+                                                Short.MAX_VALUE))
+                                .addContainerGap()));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(JPanelCaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JPanelOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JPanelMano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(JPanelMazo, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(JPanelPozo, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout
+                                                .createSequentialGroup()
+                                                .addComponent(JPanelCaja, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(JPanelOpciones, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(JPanelMano, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(JPanelMazo, javax.swing.GroupLayout.PREFERRED_SIZE, 308,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(12, 12, 12)
+                                                .addComponent(JPanelPozo, javax.swing.GroupLayout.DEFAULT_SIZE, 268,
+                                                        Short.MAX_VALUE)))
+                                .addContainerGap()));
 
         pack();
     }
@@ -343,12 +358,13 @@ public class InterfazJuego extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Las cartas ya estan en el Mazo y mezcladas.");
             return;
         }
-        
+
         juego.barajarYPrepararMazo();
-        
+
         actualizarVistasJuego();
-        
-        JOptionPane.showMessageDialog(this, "Baraja mezclada. Ahora hay " + juego.getMazo().size() + " cartas en el Mazo.");
+
+        JOptionPane.showMessageDialog(this,
+                "Baraja mezclada. Ahora hay " + juego.getMazo().size() + " cartas en el Mazo.","Información de baraja", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public static void main(String args[]) {
