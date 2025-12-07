@@ -8,15 +8,15 @@ import java.util.List;
 
 public class InterfazJuego extends JFrame {
     private Juego juego;
-    private boolean mostrarMazo = false;
-    private boolean mostrarMano = true;
+    private boolean mostrarMazo = false; // Controla la visibilidad del mazo
+    private boolean mostrarPozo = false; // Controla la visibilidad del pozo
     private final Color VERDE_MESA = new Color(6, 90, 45);
     private final Color DORADO = new Color(255, 215, 0);
     private final Font FUENTE_TITULO = new Font("Segoe UI", Font.BOLD, 18);
     private final Font FUENTE_CARTA = new Font("Segoe UI", Font.BOLD, 14);
     private final Font FUENTE_BOTON = new Font("Segoe UI", Font.BOLD, 13);
     private JPanel panelCaja, panelMazo, panelMano, panelPozo, panelOpciones;
-    private JButton btnNueva, btnBarajar, btnMostrarMazo, btnMostrarMano, btnValidar, btnOrdenar, btnGuardar, btnCargar;
+    private JButton btnNueva, btnBarajar, btnMostrarMazo, btnMostrarPozo, btnValidar, btnOrdenar, btnGuardar, btnCargar;
     private List<JToggleButton> botonesMano = new ArrayList<>();
 
     public InterfazJuego() {
@@ -39,10 +39,10 @@ public class InterfazJuego extends JFrame {
         panelOpciones = new JPanel();
         panelOpciones.setOpaque(false);
         panelOpciones.setLayout(new GridLayout(2, 4, 10, 8));
-        btnNueva = crearBoton("Nueva partida", e -> { juego = new Juego(); mostrarMazo = false; mostrarMano = true; refrescarTodo(); });
+        btnNueva = crearBoton("Nueva partida", e -> { juego = new Juego(); mostrarMazo = false; mostrarPozo = false; refrescarTodo(); });
         btnBarajar = crearBoton("Barajar", e -> { juego.barajarYPrepararMazo(); refrescarTodo(); });
         btnMostrarMazo = crearBoton("Mostrar mazo", e -> { mostrarMazo = !mostrarMazo; btnMostrarMazo.setText(mostrarMazo ? "Ocultar mazo" : "Mostrar mazo"); refrescarTodo(); });
-        btnMostrarMano = crearBoton("Ocultar mano", e -> { mostrarMano = !mostrarMano; btnMostrarMano.setText(mostrarMano ? "Ocultar mano" : "Mostrar mano"); refrescarTodo(); });
+        btnMostrarPozo = crearBoton("Mostrar pozo", e -> { mostrarPozo = !mostrarPozo; btnMostrarPozo.setText(mostrarPozo ? "Ocultar pozo" : "Mostrar pozo"); refrescarTodo(); });
         btnValidar = crearBoton("Validar", e -> validarMano());
         btnOrdenar = crearBoton("Ordenar mano", e -> { juego.getMano().ordenar(); refrescarTodo(); });
         btnGuardar = crearBoton("Guardar", e -> guardarPartida());
@@ -50,7 +50,7 @@ public class InterfazJuego extends JFrame {
         panelOpciones.add(btnNueva);
         panelOpciones.add(btnBarajar);
         panelOpciones.add(btnMostrarMazo);
-        panelOpciones.add(btnMostrarMano);
+        panelOpciones.add(btnMostrarPozo);
         panelOpciones.add(btnValidar);
         panelOpciones.add(btnOrdenar);
         panelOpciones.add(btnGuardar);
@@ -160,12 +160,6 @@ public class InterfazJuego extends JFrame {
         panelMano.removeAll();
         JPanel area = crearAreaCartas(true);
         botonesMano.clear();
-        if (!mostrarMano) {
-            JLabel oculto = new JLabel("✦ Mano Oculta ✦");
-            oculto.setForeground(DORADO);
-            panelMano.add(oculto, BorderLayout.CENTER);
-            return;
-        }
         List<Carta> lista = juego.getMano().getCartas();
         for (int i = 0; i < lista.size(); i++) {
             Carta c = lista.get(i);
@@ -219,6 +213,8 @@ public class InterfazJuego extends JFrame {
             int opcion = JOptionPane.showConfirmDialog(this, sb.toString(), "Permutaciones (4/3/2/0). Enviar al pozo?", JOptionPane.YES_NO_OPTION);
             if (opcion == JOptionPane.YES_OPTION) {
                 String res = juego.aplicarDescartarYRefrescar(seleccion);
+                mostrarPozo = false; // Ocultar el pozo después de enviar las cartas
+                btnMostrarPozo.setText("Mostrar pozo");
                 for (JToggleButton t : botonesMano) t.setSelected(false);
                 refrescarTodo();
                 JOptionPane.showMessageDialog(this, res);
@@ -233,8 +229,8 @@ public class InterfazJuego extends JFrame {
         if (!existe) {
             JOptionPane.showMessageDialog(this, "PERDISTE. No existen sándwiches válidos en la mano.");
             btnBarajar.setEnabled(false);
-            btnMostrarMazo.setEnabled(false);
-            btnMostrarMano.setEnabled(false);
+            btnMostrarMazo.setEnabled(false); // Corregido
+            btnMostrarPozo.setEnabled(false);
             btnValidar.setEnabled(false);
             btnOrdenar.setEnabled(false);
             btnGuardar.setEnabled(true);
@@ -289,6 +285,20 @@ public class InterfazJuego extends JFrame {
             JLabel vacio = new JLabel("Pozo vacío");
             vacio.setForeground(DORADO);
             center.add(vacio);
+        } else if (!mostrarPozo) {
+            int dorsos = Math.min(10, lista.size());
+            for (int i = 0; i < dorsos; i++) {
+                JButton d = new JButton("🂠");
+                d.setFont(FUENTE_CARTA);
+                d.setPreferredSize(new Dimension(80, 40));
+                d.setEnabled(false);
+                d.setBackground(Color.DARK_GRAY);
+                d.setForeground(Color.WHITE);
+                center.add(d);
+            }
+            JLabel cont = new JLabel("Cartas: " + lista.size());
+            cont.setForeground(DORADO);
+            center.add(cont);
         } else {
             for (Carta c : lista) {
                 center.add(crearBotonCartaVisible(c, false));
