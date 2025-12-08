@@ -1,50 +1,86 @@
 package Proyecto_Avance3;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
-public class Mazo {
+public class Mazo
+ {
+    // Pila de cartas del mazo (tope = siguiente carta a robar)
     private final Stack<Carta> cartas;
 
-    public Mazo() {
+    public Mazo() 
+    {
         cartas = new Stack<>();
     }
 
-    public void push(Carta c) {
-        cartas.push(c);
+    /** Agrega una carta al tope del mazo. */
+    public void push(Carta c) 
+    {
+        if (c != null) {
+            cartas.push(c);
+        }
     }
 
-    public Carta pop() {
-        if (cartas.isEmpty()) return null;
+    /** Extrae y devuelve la carta del tope del mazo. Devuelve null si está vacío. */
+    public Carta pop() 
+    {
+        if (cartas.isEmpty())
+        {
+            return null;
+        }
         return cartas.pop();
     }
 
-    public int size() {
-        return cartas.size();
-    }
-
-    public boolean isEmpty() {
+    /** Indica si el mazo está vacío. */
+    public boolean isEmpty() 
+    {
         return cartas.isEmpty();
     }
 
-    public void clear() {
-        cartas.clear();
+    /** Cantidad de cartas en el mazo. */
+    public int size() 
+    {
+        return cartas.size();
     }
 
-    public void addAllFromCaja(List<Carta> listaCaja) {
+    /** Agrega todas las cartas de una lista (por ejemplo, desde la caja) al mazo. */
+    public void addAllFromCaja(List<Carta> listaCaja) 
+    {
+        if (listaCaja == null || listaCaja.isEmpty()) 
+        {
+            return;
+        }
         cartas.addAll(listaCaja);
     }
 
-    public void shuffle() {
+    /** Baraja aleatoriamente las cartas del mazo. */
+    public void shuffle() 
+    {
         Collections.shuffle(cartas);
     }
 
-    public List<Carta> getCartas() {
+    /**
+     * Devuelve la lista interna de cartas.
+     * OJO: si modificas esta lista, modificas también el mazo.
+     */
+    public List<Carta> getCartas() 
+    {
         return cartas;
     }
 
-    public List<Carta> getCardsSnapshot() {
-        return List.copyOf(cartas);
+    /**
+     * Devuelve una copia de la lista de cartas para solo lectura o visualización.
+     * (Usa ArrayList en vez de List.copyOf para ser compatible con Java 8.)
+     */
+    public List<Carta> getCardsSnapshot() 
+    {
+        return new ArrayList<>(cartas);
+    }
+
+     /** Elimina todas las cartas del mazo. */
+    public void clear() {
+        cartas.clear();
     }
 }
