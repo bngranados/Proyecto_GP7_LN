@@ -112,16 +112,20 @@ public class Juego {
 
     public int maxTakeForSelected(List<Carta> selected) {
         if (selected.size() != 3) return 0;
+
+        ArbolPermutaciones arbol = new ArbolPermutaciones();
         List<int[]> perms = List.of(new int[]{0,1,2}, new int[]{0,2,1}, new int[]{1,2,0}, new int[]{1,0,2}, new int[]{2,0,1}, new int[]{2,1,0});
-        int max = 0;
+
         for (int[] p : perms) {
             Carta a = selected.get(p[0]);
             Carta b = selected.get(p[1]);
             Carta c = selected.get(p[2]);
             int val = evaluarTripleta(a,b,c);
-            if (val > max) max = val;
+            arbol.insertar(new NodoPermutacion(List.of(a, b, c), val));
         }
-        return max;
+
+        NodoPermutacion maxNodo = arbol.encontrarMaximo();
+        return (maxNodo != null) ? maxNodo.valor : 0;
     }
 
     public List<String> detallePermutaciones(List<Carta> selected) {
