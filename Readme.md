@@ -7,7 +7,7 @@
 | Mayquelin Narbaez Guido | FI22023961 | Mayquelin | mayquelin1984@gmail.com |
 | Mariangel Barrios Muñoz | FI24036629 | MariangelB | mariamgelbarrios5@gmail.com |
 | Brandon Lanzoni Rodriguez| FI25049122 | Brandon120105|brandongabriel120105@gmail.com |
-| ... | ... | ... | ... |
+
 
 ## Editores / IDEs Utilizados
 - Los IDE utilizados son NetBeans y Visual Studio Code.
@@ -55,7 +55,7 @@ Al ser una aplicación de escritorio (Desktop) con interfaz gráfica, se utiliza
 ### 2. Compilación
 - Desde el IDE: usar **Run** o **Build** para generar los `.class`.
 - Desde la terminal:
-  1. Ubicarse en la carpeta `Proyecto_Avance2`.
+  1. Ubicarse en la carpeta `Proyecto_Avance3`.
   2. Compilar con:
      ```sh
      javac -d bin *.java
@@ -65,14 +65,17 @@ Al ser una aplicación de escritorio (Desktop) con interfaz gráfica, se utiliza
 - Desde el IDE: ejecutar la clase principal `Carta`.
 - Desde la terminal:
   ```sh
-  java -cp bin Proyecto_Avance2.Carta
-  
+  java -cp bin Proyecto_Avance3.Carta
+  ```
+  <img width="834" height="50" alt="image" src="https://github.com/user-attachments/assets/05500421-5907-48d1-9a0a-b56d537430ea" />
+
 ### Dato:
 - Se creó la carpeta bin dentro de la carpeta principal del Avance II para que, al compilar desde la terminal (cuando se generan los archivos .class), estos se almacenen en una carpeta diferente, lo que permite mantener un orden más claro.
 
 ---
 
-<img width="1136" height="720" alt="image" src="https://github.com/user-attachments/assets/6a2665a5-b2db-4f88-a12f-346aaa64e019" />
+<img width="1442" height="859" alt="image" src="https://github.com/user-attachments/assets/955795fb-9bdf-419f-beb1-19932fbc1a26" />
+
 
 
 
