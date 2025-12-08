@@ -1,9 +1,5 @@
 package Proyecto_Avance3;
 
-/**
- * Un Árbol Binario de Búsqueda para organizar y consultar permutaciones de tripletas de cartas.
- * Los nodos se ordenan según el valor de la tripleta (cartas a tomar).
- */
 public class ArbolPermutaciones {
     private NodoPermutacion raiz;
 
@@ -37,11 +33,6 @@ public class ArbolPermutaciones {
         }
     }
 
-    /**
-     * Encuentra el nodo con el valor máximo en el árbol.
-     * En un ABB, este es el nodo que está más a la derecha.
-     * @return El nodo con el valor máximo, o null si el árbol está vacío.
-     */
     public NodoPermutacion encontrarMaximo() {
         if (raiz == null) {
             return null;

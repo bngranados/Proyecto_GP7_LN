@@ -2,10 +2,6 @@ package Proyecto_Avance3;
 
 import java.util.List;
 
-/**
- * Representa un nodo en un árbol binario de búsqueda de permutaciones.
- * Cada nodo almacena una tripleta de cartas y el valor que resulta de su evaluación.
- */
 public class NodoPermutacion {
     List<Carta> tripleta;
     int valor;
